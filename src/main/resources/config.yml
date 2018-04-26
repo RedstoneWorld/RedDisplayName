@@ -1,0 +1,6 @@
+# Only include colors in the name
+only-colors: false
+# Whether to show the prefix or the suffix
+show:
+  prefix: true
+  suffix: false

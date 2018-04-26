@@ -1,0 +1,19 @@
+name: RedDisplayName
+version: '${minecraft.plugin.version}'
+main: de.redstoneworld.reddisplayname.RedDisplayName
+softdepend: [LuckPerms]
+authors: [Phoenix616]
+commands:
+   reddisplayname:
+      aliases: [displayname,rdn]
+      description: Plugin command description.
+      usage: /<command> reload
+      permission: rwm.reddisplayname.use
+      permission-message: You don't have the permission <permission>
+permissions:
+   rwm.reddisplayname.use:
+      description: Gives permission to the plugin command
+      default: op
+   rwm.reddisplayname.reload:
+      description: Gives permission to reload the plugin
+      default: op
