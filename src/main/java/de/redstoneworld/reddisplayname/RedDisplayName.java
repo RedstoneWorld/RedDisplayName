@@ -171,10 +171,17 @@ public final class RedDisplayName extends JavaPlugin implements Listener {
      */
     private String getPrefix(Player player) {
         if (showPrefix) {
-            String prefix = vaultChat.getPlayerPrefix(player);
+            
+            String prefix = vaultChat.getPlayerInfoString(player, "reddisplayname.prefix", null);
+            if (prefix == null || prefix.isEmpty()) {
+                prefix = vaultChat.getPlayerPrefix(player);
+            }
             if (prefix == null || prefix.isEmpty()) {
                 String group = vaultChat.getPrimaryGroup(player);
-                prefix = vaultChat.getGroupPrefix(player.getWorld(), group);
+                prefix = vaultChat.getGroupInfoString(player.getWorld(), group, "reddisplayname.prefix", null);
+                if (prefix == null || prefix.isEmpty()) {
+                    prefix = vaultChat.getGroupPrefix(player.getWorld(), group);
+                }
             }
             return prefix != null ? strip(prefix) : "";
         }
@@ -188,10 +195,16 @@ public final class RedDisplayName extends JavaPlugin implements Listener {
      */
     private String getSuffix(Player player) {
         if (showSuffix) {
-            String suffix = vaultChat.getPlayerSuffix(player);
+            String suffix = vaultChat.getPlayerInfoString(player, "reddisplayname.suffix", null);
+            if (suffix == null || suffix.isEmpty()) {
+                suffix = vaultChat.getPlayerSuffix(player);
+            }
             if (suffix == null || suffix.isEmpty()) {
                 String group = vaultChat.getPrimaryGroup(player);
-                suffix = vaultChat.getGroupSuffix(player.getWorld(), group);
+                suffix = vaultChat.getGroupInfoString(player.getWorld(), group, "reddisplayname.suffix", null);
+                if (suffix == null || suffix.isEmpty()) {
+                    suffix = vaultChat.getGroupSuffix(player.getWorld(), group);
+                }
             }
             return suffix != null ? strip(suffix) : "";
         }
