@@ -137,8 +137,8 @@ public final class RedDisplayName extends JavaPlugin implements Listener {
                 Team team = scoreboard.getTeam(teamName);
                 if (team == null) {
                     team = scoreboard.registerNewTeam(teamName);
-                    team.setPrefix(ChatColor.translateAlternateColorCodes('&', permPrefix));
-                    team.setSuffix(ChatColor.translateAlternateColorCodes('&', permSuffix));
+                    team.setPrefix(permPrefix);
+                    team.setSuffix(permSuffix);
                     team.setCanSeeFriendlyInvisibles(false);
                 }
                 team.addEntry(playerName);
@@ -183,7 +183,7 @@ public final class RedDisplayName extends JavaPlugin implements Listener {
                     prefix = vaultChat.getGroupPrefix(player.getWorld(), group);
                 }
             }
-            return prefix != null ? strip(prefix) : "";
+            return prefix != null ? handleColors(prefix) : "";
         }
         return "";
     }
@@ -206,17 +206,18 @@ public final class RedDisplayName extends JavaPlugin implements Listener {
                     suffix = vaultChat.getGroupSuffix(player.getWorld(), group);
                 }
             }
-            return suffix != null ? strip(suffix) : "";
+            return suffix != null ? handleColors(suffix) : "";
         }
         return "";
     }
     
     /**
-     * Check and strip colors
-     * @param string The string to strip
+     * Translate, check and strip colors
+     * @param string The string to translate, check and strip colors from
      * @return Only colors if only-colors is enabled in the config
      */
-    private String strip(String string) {
+    private String handleColors(String string) {
+        string = ChatColor.translateAlternateColorCodes('&', string);
         if (onlyColors) {
             return ChatColor.getLastColors(string);
         }
