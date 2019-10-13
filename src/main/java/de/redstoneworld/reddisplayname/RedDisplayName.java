@@ -140,6 +140,15 @@ public final class RedDisplayName extends JavaPlugin implements Listener {
                     team.setPrefix(permPrefix);
                     team.setSuffix(permSuffix);
                     team.setCanSeeFriendlyInvisibles(false);
+                    for (int i = permPrefix.length(); i > 1; i--) {
+                        if (permPrefix.charAt(i - 1) == ChatColor.COLOR_CHAR) {
+                            ChatColor color = ChatColor.getByChar(permPrefix.charAt(i));
+                            if (color != null && color.isColor()) {
+                                team.setColor(color);
+                                break;
+                            }
+                        }
+                    }
                 }
                 team.addEntry(playerName);
             }
