@@ -1,5 +1,6 @@
 name: RedDisplayName
 version: '${minecraft.plugin.version}'
+api-version: '1.13'
 main: de.redstoneworld.reddisplayname.RedDisplayName
 softdepend: [LuckPerms]
 authors: [Phoenix616]
